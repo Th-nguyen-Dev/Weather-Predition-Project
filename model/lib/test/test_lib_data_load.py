@@ -28,6 +28,8 @@ test_dataframes = {
     })
 }
 
+test_empty_dataframes = {}
+
 test_input_tensor = torch.tensor([
     [[1,4],[1,4],[1,4],[1,4]],
     [[2,5],[2,5],[2,5],[2,5]],
@@ -44,6 +46,7 @@ test_output_tensor_offset_2 = torch.tensor([
     [[3,6],[3,6],[3,6],[3,6]],
 ])
     
+test_empty_tensor = torch.tensor([])
 class TestDataLoad(unittest.TestCase):
     def test_create_node_feature_tensor(self):
         self.assertTrue(torch.equal(create_node_feature_tensor(test_dataframes, 0), test_input_tensor))
@@ -53,5 +56,8 @@ class TestDataLoad(unittest.TestCase):
 
     def test_create_node_feature_tensor_offset_2(self):
         self.assertTrue(torch.equal(create_node_feature_tensor(test_dataframes, 2), test_output_tensor_offset_2))
+        
+    def test_create_node_feature_tensor(self):
+        self.assertTrue(torch.equal(create_node_feature_tensor(test_empty_dataframes, 3), test_empty_tensor))
 if __name__ == '__main__':
     unittest.main()

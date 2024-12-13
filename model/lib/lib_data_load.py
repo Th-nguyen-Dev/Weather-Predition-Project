@@ -12,6 +12,9 @@ def create_node_feature_tensor(dataframes_dict, offset=0):
     import torch
     import numpy as np
     
+    if dataframes_dict == {}:
+        return torch.tensor([])
+    
     array_3D = []
     for df in dataframes_dict.values():
         df_features = df.to_numpy()
