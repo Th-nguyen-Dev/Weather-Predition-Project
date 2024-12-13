@@ -46,8 +46,10 @@ test_output_tensor_offset_2 = torch.tensor([
     
 class TestDataLoad(unittest.TestCase):
     def test_create_node_feature_tensor(self):
-        print(test_input_tensor.shape)
-        self.assertTrue(torch.equal(create_node_feature_tensor(test_dataframes), test_input_tensor))
+        self.assertTrue(torch.equal(create_node_feature_tensor(test_dataframes, 0), test_input_tensor))
+        
+    def test_create_node_feature_tensor_offset_1(self):
+        self.assertTrue(torch.equal(create_node_feature_tensor(test_dataframes, 1), test_output_tensor_offset_1))
 
 if __name__ == '__main__':
     unittest.main()

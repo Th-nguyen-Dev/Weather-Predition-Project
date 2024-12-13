@@ -8,16 +8,24 @@ def import_dataframes_dict(folder_path):
             dataframes_dict[df_name] = pd.read_csv(folder_path + file)
     return dataframes_dict
 
-def create_node_feature_tensor(dataframes_dict):
+def create_node_feature_tensor(dataframes_dict, offset=0):
     import torch
     import numpy as np
-    return_tensor = []
+    
+    array_3D = []
     for df in dataframes_dict.values():
         df_features = df.to_numpy()
-        #shape [n_nodes, n_rows, n_features]  
-        return_tensor.append(df_features) 
-    return_tensor = torch.tensor(np.array(return_tensor))
+        array_3D.append(df_features) 
+        
+    #shape [n_nodes, n_rows, n_features]
+    base_tensor = torch.tensor(np.array(array_3D))
+    
     #shape [n_rows, n_nodes, n_features]
-    return_tensor = return_tensor.permute(1, 0, 2)
-    print(return_tensor.shape)
-    return return_tensor
+    permute_tensor = base_tensor.permute(1, 0, 2)
+    
+    # If there is offset, remove the first offset rows
+    if offset > 0:
+        permute_tensor = permute_tensor[offset:]
+    
+    return permute_tensor
+
