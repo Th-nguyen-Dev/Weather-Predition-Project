@@ -1,0 +1,3 @@
+A 3D dimensional approahc to neural network where the nodes not only connect on a spatial layers but also connected on a time layers
+Test the model on different batches size to see if ther is a permance difference 
+Is there a way to configure the model to predict the nth next day

@@ -7,6 +7,7 @@ import pandas as pd
 
 from model.lib.lib_data_load import import_dataframes_dict
 from model.lib.lib_data_load import create_node_feature_tensor
+from model.lib.lib_data_load import create_edges_tensor_2D
 import torch
 
 test_dataframes = {
@@ -45,6 +46,11 @@ test_output_tensor_offset_1 = torch.tensor([
 test_output_tensor_offset_2 = torch.tensor([
     [[3,6],[3,6],[3,6],[3,6]],
 ])
+
+test_output_edges_tensor = torch.tensor([
+    [0, 1 , 0 , 2 , 0 , 3, 1, 2, 1, 3, 2, 3],
+    [1, 0 , 2, 0 , 3 , 0, 2, 1, 3, 1, 3, 2],
+])
     
 test_empty_tensor = torch.tensor([])
 class TestDataLoad(unittest.TestCase):
@@ -59,5 +65,8 @@ class TestDataLoad(unittest.TestCase):
         
     def test_create_node_feature_tensor(self):
         self.assertTrue(torch.equal(create_node_feature_tensor(test_empty_dataframes, 3), test_empty_tensor))
+        
+    def test_create_edges_tensor_2D(self):
+        self.assertTrue(torch.equal(create_edges_tensor_2D(test_dataframes), test_output_edges_tensor))
 if __name__ == '__main__':
     unittest.main()

@@ -33,4 +33,23 @@ def create_node_feature_tensor(dataframes_dict, offset=0):
     return permute_tensor
 
 
-
+def create_edges_tensor_2D(dataframes_dict):
+    import torch
+    import numpy as np
+    keys_length = len(list(dataframes_dict.keys()))
+    
+    edges_start = []
+    edges_end = []
+    
+    # Create all possible edges
+    for i in range(keys_length):
+        for j in range(i, keys_length):
+            if i != j:
+                edges_start.append(i)
+                edges_end.append(j)
+                edges_start.append(j)
+                edges_end.append(i)
+                
+    edges_array = np.array([edges_start, edges_end])
+    edges_tensor = torch.tensor(edges_array)
+    return edges_tensor
