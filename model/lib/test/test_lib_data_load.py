@@ -63,10 +63,13 @@ class TestDataLoad(unittest.TestCase):
     def test_create_node_feature_tensor_offset_2(self):
         self.assertTrue(torch.equal(create_node_feature_tensor(test_dataframes, 2), test_output_tensor_offset_2))
         
-    def test_create_node_feature_tensor(self):
+    def test_create_node_feature_tensor_empty(self):
         self.assertTrue(torch.equal(create_node_feature_tensor(test_empty_dataframes, 3), test_empty_tensor))
         
     def test_create_edges_tensor_2D(self):
         self.assertTrue(torch.equal(create_edges_tensor_2D(test_dataframes), test_output_edges_tensor))
+    
+    def test_create_edges_tensor_2D_empty(self):
+        self.assertTrue(torch.equal(create_edges_tensor_2D(test_empty_dataframes), test_empty_tensor))    
 if __name__ == '__main__':
     unittest.main()

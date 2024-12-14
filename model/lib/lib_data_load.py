@@ -36,6 +36,10 @@ def create_node_feature_tensor(dataframes_dict, offset=0):
 def create_edges_tensor_2D(dataframes_dict):
     import torch
     import numpy as np
+    
+    if not dataframes_dict:
+        return torch.tensor([])
+    
     keys_length = len(list(dataframes_dict.keys()))
     
     edges_start = []
@@ -53,3 +57,5 @@ def create_edges_tensor_2D(dataframes_dict):
     edges_array = np.array([edges_start, edges_end])
     edges_tensor = torch.tensor(edges_array)
     return edges_tensor
+
+
