@@ -70,6 +70,9 @@ class TestDataLoad(unittest.TestCase):
         self.assertTrue(torch.equal(create_edges_tensor_2D(test_dataframes), test_output_edges_tensor))
     
     def test_create_edges_tensor_2D_empty(self):
-        self.assertTrue(torch.equal(create_edges_tensor_2D(test_empty_dataframes), test_empty_tensor))    
+        self.assertTrue(torch.equal(create_edges_tensor_2D(test_empty_dataframes), test_empty_tensor)) 
+    
+    def test_create_edgesweight_tensor_2D(self):
+        self.assertTrue(torch.equal(create_edges_tensor_2D(test_dataframes), test_output_edges_tensor))   
 if __name__ == '__main__':
     unittest.main()
