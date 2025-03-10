@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Directory containing the files
-DIR="processed-final-data-2"
+DIR="processed-final-data"
 # Directory to save the downloaded files
 SAVE_DIR="./location-data"
 
